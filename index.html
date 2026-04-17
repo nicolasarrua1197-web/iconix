@@ -389,7 +389,10 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 <!-- ADMIN BAR -->
 <div class="abar" id="adminBar">
   <div class="abar-l"><div class="adot"></div><p>Modo administrador — cambios en la nube ☁</p></div>
-  <button class="apbtn" onclick="openAdd()">+ Agregar remera</button>
+  <div style="display:flex;gap:.6rem;align-items:center">
+    <button class="apbtn" onclick="openAdd()">+ Agregar remera</button>
+    <button class="apbtn" style="background:transparent;border:1px solid rgba(225,29,72,.4);color:var(--red)" onclick="exitAdmin()">Salir</button>
+  </div>
 </div>
 
 <!-- LIGHTBOX -->
@@ -436,7 +439,7 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="nav-right">
-    <button class="admin-btn" id="adminToggle" onclick="toggleAdmin()">Admin</button>
+
     <button class="icon-btn" onclick="openCart()">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
       <span class="cbadge" id="cartBadge">0</span>
@@ -623,9 +626,14 @@ function updateCart(){
   document.getElementById('cartWa').href='https://wa.me/'+WA+'?text='+waMsg;
 }
 
-// ADMIN
-function toggleAdmin(){if(!adminMode){document.getElementById('loginModal').classList.add('open');setTimeout(function(){document.getElementById('loginPass').focus();},80);}else{adminMode=false;document.getElementById('adminBar').classList.remove('on');document.getElementById('adminToggle').classList.remove('on');document.getElementById('adminToggle').textContent='Admin';render();}}
-function doLogin(){var v=document.getElementById('loginPass').value;if(v===PASS){document.getElementById('loginModal').classList.remove('open');document.getElementById('loginPass').value='';document.getElementById('loginErr').classList.remove('on');adminMode=true;document.getElementById('adminBar').classList.add('on');document.getElementById('adminToggle').classList.add('on');document.getElementById('adminToggle').textContent='Salir';render();}else{document.getElementById('loginErr').classList.add('on');document.getElementById('loginPass').value='';document.getElementById('loginPass').focus();}}
+// ADMIN — acceso via ?admin=true en la URL
+function activateAdmin(){adminMode=true;document.getElementById('adminBar').classList.add('on');var exitBtn=document.getElementById('adminExitBtn');if(exitBtn)exitBtn.style.display='flex';render();}
+function exitAdmin(){adminMode=false;document.getElementById('adminBar').classList.remove('on');var exitBtn=document.getElementById('adminExitBtn');if(exitBtn)exitBtn.style.display='none';// Limpiar URL
+window.history.replaceState({},'',window.location.pathname);render();}
+function toggleAdmin(){if(!adminMode){document.getElementById('loginModal').classList.add('open');setTimeout(function(){document.getElementById('loginPass').focus();},80);}else{exitAdmin();}}
+function doLogin(){var v=document.getElementById('loginPass').value;if(v===PASS){document.getElementById('loginModal').classList.remove('open');document.getElementById('loginPass').value='';document.getElementById('loginErr').classList.remove('on');activateAdmin();}else{document.getElementById('loginErr').classList.add('on');document.getElementById('loginPass').value='';document.getElementById('loginPass').focus();}}
+// Detectar ?admin=true al cargar
+if(new URLSearchParams(window.location.search).get('admin')==='true'){document.getElementById('loginModal').classList.add('open');setTimeout(function(){document.getElementById('loginPass').focus();},200);}
 function closeLogin(){document.getElementById('loginModal').classList.remove('open');document.getElementById('loginPass').value='';document.getElementById('loginErr').classList.remove('on');}
 
 // PHOTOS
