@@ -34,7 +34,7 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 @keyframes grain{0%,100%{transform:translate(0,0)}20%{transform:translate(-3%,-4%)}40%{transform:translate(4%,-2%)}60%{transform:translate(-2%,4%)}80%{transform:translate(3%,2%)}}
 
 /* NAV */
-.nav{position:fixed;top:0;left:0;right:0;z-index:500;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.04)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:9999;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 3rem;background:rgba(9,9,11,.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.06);-webkit-transform:translateZ(0);transform:translateZ(0);will-change:transform}
 .nav.solid{background:rgba(9,9,11,.98)}
 .logo{font-family:'Anton',sans-serif;font-size:1.5rem;letter-spacing:.1em}
 .logo em{font-style:normal;color:var(--red)}
