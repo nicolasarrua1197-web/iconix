@@ -313,10 +313,10 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
   button,a{cursor:pointer}
   .nav{padding:0 1.2rem}
   .nav-links{display:none}
-  .hero{grid-template-columns:1fr;min-height:auto}
-  .hero-l{padding:5rem 1.5rem 3rem;order:2}
-  .hero-r{height:65vw;min-height:300px;order:1}
-  .hero-r::before{background:linear-gradient(to bottom,transparent 60%,var(--ink) 100%)}
+  .hero{grid-template-columns:1fr;min-height:auto;padding-top:0;display:flex;flex-direction:column}
+  .hero-l{padding:3rem 1.5rem 3rem;order:2}
+  .hero-r{height:70vw;min-height:280px;order:1;margin-top:var(--nav-h)}
+  .hero-r::before{background:linear-gradient(to bottom,transparent 55%,var(--ink) 100%)}
   .hero-scroll{display:none}
   .hero-stats{grid-template-columns:repeat(3,1fr)}
   .sec{padding:5rem 1.5rem}
