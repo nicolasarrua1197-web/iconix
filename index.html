@@ -326,10 +326,10 @@ nav.scrolled::after{opacity:1}
   .field-row{grid-template-columns:1fr}
   .carousel-btn{opacity:1!important}
   .quick-wa{opacity:1!important;transform:translateY(0)!important}
-  .mid-banner{height:auto;margin:2rem 0}
-  .mid-banner img{position:static;width:100%;height:auto;object-fit:contain;filter:brightness(.5);transform:none;transition:none}
-  .mid-banner-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(8,8,8,.85) 100%);align-items:flex-end;min-height:unset}
-  .mid-banner-content{padding:2rem 1.8rem}
+  .mid-banner{height:auto;margin:2rem 0;overflow:visible;display:flex;flex-direction:column}
+  .mid-banner img{position:static;width:100%;height:auto;object-fit:contain;filter:brightness(.75);transform:none;transition:none;flex-shrink:0}
+  .mid-banner-overlay{position:static;background:var(--black);display:flex;align-items:flex-start;min-height:unset}
+  .mid-banner-content{padding:2rem 1.8rem 2.5rem}
   body{cursor:auto}
   #cursor,#cursor-ring{display:none}
   .nav-cta,.filter-btn,.add-btn,.hero-btn-primary,.mbtn,.wa-btn,.add-cart-btn,.cart-nav-btn,.cart-x,.cart-wa-btn,.cta-wa,.mid-banner-btn,.carousel-btn,.edit-btn,.cart-clear,.qty-btn{cursor:pointer}
