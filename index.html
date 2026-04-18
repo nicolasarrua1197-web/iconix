@@ -764,8 +764,9 @@ document.getElementById('lbNext').addEventListener('click',function(){lbMove(1);
 document.addEventListener('keydown',function(e){if(!document.getElementById('lb').classList.contains('open'))return;if(e.key==='ArrowLeft')lbMove(-1);if(e.key==='ArrowRight')lbMove(1);if(e.key==='Escape')closeLb();});
 
 // CART
-function openCart(){document.getElementById('cartPnl').classList.add('open');document.getElementById('cartBd').classList.add('open');document.body.style.overflow='hidden';}
-function closeCart(){document.getElementById('cartPnl').classList.remove('open');document.getElementById('cartBd').classList.remove('open');document.body.style.overflow='';}
+var scrollY=0;
+function openCart(){scrollY=window.scrollY;document.getElementById('cartPnl').classList.add('open');document.getElementById('cartBd').classList.add('open');document.body.style.overflow='hidden';document.body.style.position='fixed';document.body.style.top='-'+scrollY+'px';document.body.style.width='100%';}
+function closeCart(){document.getElementById('cartPnl').classList.remove('open');document.getElementById('cartBd').classList.remove('open');document.body.style.overflow='';document.body.style.position='';document.body.style.top='';document.body.style.width='';window.scrollTo(0,scrollY);}
 document.getElementById('cartXb').addEventListener('click',closeCart);
 document.getElementById('cartBd').addEventListener('click',closeCart);
 function addToCart(id){var p=products.find(function(x){return x.id===id;});if(!p)return;var ex=cart.find(function(x){return x.id===id;});if(ex)ex.qty++;else cart.push({id:p.id,name:p.name,price:p.price,img:p.img,qty:1});updateCart();openCart();showToast(p.name+' agregado ✓');}
