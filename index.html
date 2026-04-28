@@ -182,7 +182,15 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 .addbtn:hover{background:var(--red);color:white;transform:translateY(-1px)}
 .addbtn svg{width:11px;height:11px}
 
-/* ZOOM LUPA */
+/* CARD IMG MOBILE FIX */
+@media(max-width:900px){
+  .cimg{height:auto !important;overflow:visible}
+  .carousel{height:auto}
+  .ctrack{height:auto}
+  .cslide{min-width:100%;height:auto}
+  .cslide img,.solo{width:100%;height:auto !important;object-fit:contain !important;max-height:none}
+  .cbtn{position:absolute;top:50%;transform:translateY(-50%)}
+}
 .zoom-container{position:relative;overflow:hidden;cursor:crosshair}
 .zoom-container img{transition:transform .6s var(--expo),filter .4s;transform-origin:center;pointer-events:none}
 .zoom-lens{position:absolute;inset:0;z-index:6;cursor:crosshair}
@@ -391,7 +399,6 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
   .sec{padding:3rem 1.5rem}
   #catalogo .sec{padding-bottom:1rem}
   .cat-hdr{flex-direction:column;align-items:flex-start}
-  .cimg{height:100vw}
   .grid{grid-template-columns:1fr;gap:1px}
   .cta{padding:7rem 1.5rem}
   .mbanner img{height:auto;object-fit:contain}
