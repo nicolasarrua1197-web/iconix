@@ -182,7 +182,10 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 .addbtn:hover{background:var(--red);color:white;transform:translateY(-1px)}
 .addbtn svg{width:11px;height:11px}
 
-/* LOADING */
+/* ZOOM LUPA */
+.zoom-container{position:relative;overflow:hidden;cursor:crosshair}
+.zoom-container img{transition:transform .6s var(--expo),filter .4s;transform-origin:center;pointer-events:none}
+.zoom-lens{position:absolute;inset:0;z-index:6;cursor:crosshair}
 .ldst{display:flex;align-items:center;justify-content:center;padding:8rem;gap:.5rem;grid-column:1/-1}
 .ld{width:6px;height:6px;background:var(--red);border-radius:50%;animation:lp 1.2s ease infinite}
 .ld:nth-child(2){animation-delay:.15s}.ld:nth-child(3){animation-delay:.3s}
@@ -838,6 +841,44 @@ function setSlide(c,idx){var n=c.querySelectorAll('.cslide').length;if(idx<0)idx
 function moveCar(btn,dir){event.stopPropagation();var c=btn.closest('.carousel');setSlide(c,parseInt(c.dataset.idx)+dir);}
 function goDot(dot,idx){event.stopPropagation();setSlide(dot.closest('.carousel'),idx);}
 
+// ZOOM EN HOVER
+function initZoom(){
+  document.querySelectorAll('.cimg').forEach(function(wrap){
+    var img=wrap.querySelector('img');
+    if(!img)return;
+    wrap.classList.add('zoom-container');
+
+    wrap.addEventListener('mousemove',function(e){
+      var r=wrap.getBoundingClientRect();
+      var x=((e.clientX-r.left)/r.width)*100;
+      var y=((e.clientY-r.top)/r.height)*100;
+      img.style.transformOrigin=x+'% '+y+'%';
+      img.style.transform='scale(1.65)';
+      img.style.filter='brightness(1.05)';
+    });
+    wrap.addEventListener('mouseleave',function(){
+      img.style.transform='';
+      img.style.transformOrigin='center';
+      img.style.filter='';
+    });
+
+    // Touch para móvil
+    wrap.addEventListener('touchmove',function(e){
+      e.preventDefault();
+      var r=wrap.getBoundingClientRect();
+      var t=e.touches[0];
+      var x=((t.clientX-r.left)/r.width)*100;
+      var y=((t.clientY-r.top)/r.height)*100;
+      img.style.transformOrigin=x+'% '+y+'%';
+      img.style.transform='scale(1.65)';
+    },{passive:false});
+    wrap.addEventListener('touchend',function(){
+      img.style.transform='';
+      img.style.transformOrigin='center';
+    });
+  });
+}
+
 // AUTOPLAY — avanza sola cada 3s, pausa al hover
 function initAutoplay(){
   document.querySelectorAll('.carousel').forEach(function(c){
@@ -869,6 +910,7 @@ function render(){
   document.getElementById('statTotal').textContent=products.length;
   g.querySelectorAll('.rv').forEach(function(el){obs.observe(el);});
   initAutoplay();
+  initZoom();
 }
 
 // LIGHTBOX
