@@ -136,7 +136,7 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 .carousel{width:100%;height:100%;position:relative}
 .ctrack{display:flex;height:100%;transition:transform .6s cubic-bezier(.4,0,.2,1)}
 .cslide{min-width:100%;height:100%;flex-shrink:0}
-.cslide img,.solo{width:100%;height:100%;object-fit:cover;object-position:top;display:block;transition:transform .6s var(--expo),filter .4s}
+.cslide img,.solo{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .6s var(--expo),filter .4s}
 .card:hover .cslide img,.card:hover .solo{transform:scale(1.06)}
 .cbtn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(9,9,11,.75);border:1px solid rgba(255,255,255,.12);color:var(--chalk);width:38px;height:38px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .25s,background .2s;font-size:1.1rem;backdrop-filter:blur(8px);cursor:none}
 .cimg:hover .cbtn{opacity:1}
