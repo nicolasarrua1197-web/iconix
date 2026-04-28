@@ -184,11 +184,11 @@ body::before{content:'';position:fixed;inset:-50%;width:200%;height:200%;backgro
 
 /* CARD IMG MOBILE FIX */
 @media(max-width:900px){
-  .cimg{height:auto !important;overflow:visible}
-  .carousel{height:auto}
-  .ctrack{height:auto}
-  .cslide{min-width:100%;height:auto}
-  .cslide img,.solo{width:100%;height:auto !important;object-fit:contain !important;max-height:none}
+  .cimg{width:100%;aspect-ratio:3/4;height:auto !important;overflow:hidden}
+  .carousel{width:100%;height:100%}
+  .ctrack{height:100%}
+  .cslide{min-width:100%;height:100%}
+  .cslide img,.solo{width:100%;height:100% !important;object-fit:cover !important;object-position:center !important}
   .cbtn{position:absolute;top:50%;transform:translateY(-50%)}
 }
 .zoom-container{position:relative;overflow:hidden;cursor:crosshair}
